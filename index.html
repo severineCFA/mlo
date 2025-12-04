@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation Méthode SMART - CFA Bâtiment Plérin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Century Gothic', 'Trebuchet MS', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #87888a 0%, #5a5b5d 100%);
+            color: white;
+            padding: 20px 20px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-container {
+            background: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-container img {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="%23fced05" opacity="0.05"/></svg>');
+            pointer-events: none;
+        }
+
+        h1 {
+            font-family: 'Bahnschrift', 'Arial Narrow', sans-serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #fced05;
+            font-weight: 600;
+        }
+
+        .date-info {
+            font-size: 1.1em;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: rgba(252, 237, 5, 0.2);
+            border-left: 4px solid #fced05;
+            display: inline-block;
+            border-radius: 4px;
+        }
+
+        /* Main Content */
+        main {
+            background: white;
+            margin: -30px auto 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        section {
+            padding: 50px 40px;
+        }
+
+        section:nth-child(even) {
+            background: #fafafa;
+        }
+
+        h2 {
+            font-family: 'Bahnschrift', 'Arial Narrow', sans-serif;
+            font-size: 2em;
+            color: #87888a;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #fced05;
+        }
+
+        h3 {
+            font-family: 'Bahnschrift', 'Arial Narrow', sans-serif;
+            font-size: 1.4em;
+            color: #87888a;
+            margin: 30px 0 15px;
+        }
+
+        /* Introduction */
+        .intro-box {
+            background: linear-gradient(135deg, #fced05 0%, #f5e000 100%);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(252, 237, 5, 0.3);
+        }
+
+        .intro-box p {
+            color: #333;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .criteria-list {
+            list-style: none;
+            margin: 20px 0;
+            padding-left: 0;
+        }
+
+        .criteria-list li {
+            padding: 12px 12px 12px 45px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 6px;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .criteria-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 15px;
+            color: #fced05;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .criteria-list strong {
+            color: #87888a;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin: 20px 0;
+        }
+
+        .accordion-item {
+            margin-bottom: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            border-color: #fced05;
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #87888a 0%, #6f7072 100%);
+            color: white;
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #6f7072 0%, #87888a 100%);
+        }
+
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #fced05;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active::after {
+            content: '−';
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: white;
+        }
+
+        .accordion-content.active {
+            max-height: 1200px;
+        }
+
+        .accordion-body {
+            padding: 25px;
+            line-height: 1.8;
+        }
+
+        .sequence-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .info-badge {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            border-radius: 6px;
+            border-left: 3px solid #fced05;
+        }
+
+        .info-badge strong {
+            color: #87888a;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Info Boxes */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .info-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-top: 4px solid #fced05;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .info-card h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-card ul li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+        }
+
+        .info-card ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #fced05;
+            font-weight: bold;
+        }
+
+        /* Map */
+        .map-container {
+            margin: 30px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        .location-info {
+            background: #87888a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .location-info strong {
+            color: #fced05;
+        }
+
+        /* Download Buttons */
+        .download-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .btn-download {
+            display: inline-block;
+            background: linear-gradient(135deg, #fced05 0%, #f5e000 100%);
+            color: #333;
+            padding: 18px 40px;
+            margin: 10px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(252, 237, 5, 0.4);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(252, 237, 5, 0.6);
+            background: linear-gradient(135deg, #f5e000 0%, #fced05 100%);
+        }
+
+        .btn-download::before {
+            content: '📥 ';
+        }
+
+        /* Footer */
+        footer {
+            background: #87888a;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+
+        .contact-info strong {
+            color: #fced05;
+        }
+
+        footer a {
+            color: #fced05;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            section {
+                padding: 30px 20px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .accordion-header {
+                font-size: 1em;
+                padding: 15px 20px;
+            }
+        }
+
+        /* Accessibility */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        :focus {
+            outline: 3px solid #fced05;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Rédiger un support de formation avec la méthode SMART</h1>
+            <p class="subtitle">Avec l'apport de l'Intelligence Artificielle</p>
+            <div class="date-info">
+                <strong>📅 Date :</strong> 5 décembre 2025<br>
+                <strong>📍 Lieu :</strong> CFA Bâtiment Plérin
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="introduction">
+            <h2>🎯 Pourquoi la méthode SMART ?</h2>
+            <div class="intro-box">
+                <p>La méthode SMART est un outil simple et efficace pour formuler des objectifs pédagogiques cohérents, réalistes et mesurables. Elle vous permet de clarifier vos intentions pédagogiques et d'assurer une meilleure cohérence entre activités, supports et évaluations.</p>
+            </div>
+            
+            <h3>Les 5 critères essentiels</h3>
+            <ul class="criteria-list">
+                <li><strong>Spécifique :</strong> l'objectif décrit une action précise, centrée sur une compétence</li>
+                <li><strong>Mesurable :</strong> l'atteinte de l'objectif peut être observée ou évaluée</li>
+                <li><strong>Atteignable :</strong> l'objectif est réalisable compte tenu des ressources, du temps et du niveau du public</li>
+                <li><strong>Réaliste :</strong> l'objectif a du sens dans le parcours et correspond à un besoin réel</li>
+                <li><strong>Temporellement défini :</strong> l'objectif est cadré dans une durée et une séquence</li>
+            </ul>
+
+            <h3>L'apport de l'Intelligence Artificielle</h3>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>⚡ Gain de temps</h3>
+                    <ul>
+                        <li>Accélérer la rédaction de supports</li>
+                        <li>Générer des reformulations SMART</li>
+                        <li>Proposer des idées d'activités</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>✅ Qualité pédagogique</h3>
+                    <ul>
+                        <li>Vérifier la cohérence objectifs-contenus</li>
+                        <li>Adapter au niveau du public</li>
+                        <li>Générer des outils d'évaluation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="public">
+            <h2>👥 Public concerné</h2>
+            <p style="font-size: 1.1em; line-height: 1.8;">Cette formation s'adresse aux <strong>formateurs professionnels</strong> et <strong>formateurs d'enseignement général</strong> intervenant en CFA du Bâtiment ou en formation professionnelle.</p>
+            
+            <div style="margin-top: 20px; padding: 20px; background: #f9f9f9; border-radius: 8px; border-left: 4px solid #fced05;">
+                <p><strong>Modalités :</strong> Présentiel • <strong>Durée :</strong> 3h30</p>
+            </div>
+        </section>
+
+        <section id="programme">
+            <h2>📚 Programme détaillé</h2>
+            
+            <div class="accordion">
+                <!-- Séquence 1 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span><strong>Séquence 1</strong> – Comprendre la méthode SMART et ses enjeux</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="sequence-info">
+                                <div class="info-badge">
+                                    <strong>⏱️ Durée</strong>
+                                    45 minutes
+                                </div>
+                            </div>
+                            
+                            <h4 style="color: #87888a; margin-top: 20px;">Objectifs pédagogiques</h4>
+                            <ul>
+                                <li>Identifier les 5 critères de la méthode SMART</li>
+                                <li>Expliquer l'intérêt de la méthode pour clarifier un support de formation</li>
+                            </ul>
+                            
+                            <h4 style="color: #87888a; margin-top: 15px;">Contenus abordés</h4>
+                            <p>Méthode SMART, différence entre objectif pédagogique et objectif général, principe d'évaluation en formation professionnelle.</p>
+                            
+                            <h4 style="color: #87888a; margin-top: 15px;">Modes d'animation</h4>
+                            <ul>
+                                <li>Exposé interactif</li>
+                                <li>Analyse collective d'exemples</li>
+                                <li>Utilisation de l'IA pour reformulation et discussion critique</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Séquence 2 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span><strong>Séquence 2</strong> – Reformuler un objectif pédagogique avec la méthode SMART</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="sequence-info">
+                                <div class="info-badge">
+                                    <strong>⏱️ Durée</strong>
+                                    1 heure
+                                </div>
+                            </div>
+                            
+                            <h4 style="color: #87888a; margin-top: 20px;">Objectifs pédagogiques</h4>
+                            <ul>
+                                <li>Reformuler un objectif flou en objectif SMART</li>
+                                <li>Utiliser l'IA comme outil de reformulation et d'amélioration critique</li>
+                            </ul>
+                            
+                            <h4 style="color: #87888a; margin-top: 15px;">Contenus abordés</h4>
+                            <p>Grille d'analyse SMART, formulation d'un verbe d'action, construction d'un objectif mesurable.</p>
+                            
+                            <h4 style="color: #87888a; margin-top: 15px;">Modes d'animation</h4>
+                            <ul>
+                                <li>Atelier pratique</li>
+                                <li>Travail en sous-groupes et binômes</li>
+                                <li>Co-construction collective avec l'IA</li>
+                                <li>Débat critique sur les propositions générées</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Séquence 3 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span><strong>Séquence 3</strong> – Construire un mini-support de formation à partir d'objectifs SMART</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="sequence-info">
+                                <div class="info-badge">
+                                    <strong>⏱️ Durée</strong>
+                                    1h15
+                                </div>
+                            </div>
+                            
+                            <h4 style="color: #87888a; margin-top: 20px;">Objectifs pédagogiques</h4>
+                            <ul>
+                                <li>Organiser un mini-support de formation cohérent à partir des objectifs SMART</li>
+                                <li>Identifier les activités et évaluations pertinentes</li>
+                                <li>Utiliser l'IA pour générer supports, idées d'activités, exemples d'exercices et outils d'évaluation</li>
+                            </ul>
+                            
+                            <h4 style="color: #87888a; margin-top: 15px;">Contenus abordés</h4>
+                            <p>Structuration d'un support (introduction, objectifs, activités, ressources, évaluation). Lien entre compétences professionnelles, activités pédagogiques et critères de réussite.</p>
+                            
+                            <h4 style="color: #87888a; margin-top: 15px;">Modes d'animation</h4>
+                            <ul>
+                                <li>Atelier créatif sur un thème réel</li>
+                                <li>Production guidée d'un support structuré</li>
+                                <li>Génération de contenus avec l'IA (fiches, exercices, mises en situation)</li>
+                                <li>Feedback croisé entre pairs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Séquence 4 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span><strong>Séquence 4</strong> – Formaliser et valoriser le support produit</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="sequence-info">
+                                <div class="info-badge">
+                                    <strong>⏱️ Durée</strong>
+                                    30 minutes
+                                </div>
+                            </div>
+                            
+                            <h4 style="color: #87888a; margin-top: 20px;">Objectifs pédagogiques</h4>
+                            <ul>
+                                <li>Finaliser le support créé</li>
+                                <li>Vérifier la cohérence globale grâce à une check-list SMART</li>
+                            </ul>
+                            
+                            <h4 style="color: #87888a; margin-top: 15px;">Contenus abordés</h4>
+                            <p>Méthodes de présentation, points de vigilance, lisibilité pour les apprenants.</p>
+                            
+                            <h4 style="color: #87888a; margin-top: 15px;">Modes d'animation</h4>
+                            <ul>
+                                <li>Mise en commun (présentation de 3 minutes par binôme)</li>
+                                <li>Validation collective avec grille SMART</li>
+                                <li>Amélioration finale avec l'IA (mise en page, simplification)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefices">
+            <h2>✨ Ce que vous repartirez avec</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>📋 Méthode claire</h3>
+                    <p>Une démarche structurée pour rédiger des objectifs pédagogiques efficaces et mesurables.</p>
+                </div>
+                <div class="info-card">
+                    <h3>📁 Support adapté</h3>
+                    <p>Un support de formation structuré et directement adaptable à vos contextes d'intervention.</p>
+                </div>
+                <div class="info-card">
+                    <h3>🤖 Outils IA</h3>
+                    <p>Un ensemble d'outils pour accélérer votre production pédagogique et gagner en efficacité.</p>
+                </div>
+                <div class="info-card">
+                    <h3>🎯 Maîtrise pédagogique</h3>
+                    <p>Une meilleure compréhension de la logique compétences-objectifs-évaluation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="telechargements">
+            <h2>📥 Téléchargements</h2>
+            <div class="download-section">
+                <a href="programme.pdf" class="btn-download" download>Télécharger le programme complet</a>
+            </div>
+        </section>
+
+        <section id="localisation">
+            <h2>📍 Lieu de formation</h2>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2677.8!2d-2.7564!3d48.5358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDjCsDMyJzA4LjkiTiAywrA0NSczMy4wIlc!5e0!3m2!1sfr!2sfr!4v1234567890"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Localisation du CFA Bâtiment Plérin">
+                </iframe>
+                <div class="location-info">
+                    <strong>CFA Bâtiment Plérin</strong><br>
+                    6 avenue du Chalutier Sans Pitié<br>
+                    22190 PLÉRIN
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <strong>Contact et renseignements</strong><br>
+                Séverine PESSON<br>
+                Formatrice référente
+            </div>
+            
+            <div class="footer-links">
+                <p>
+                    <a href="https://www.batiment-cfa.bzh/le-handicap-a-batiment-cfa-bretagne/" target="_blank" rel="noopener noreferrer">
+                        ♿ Politique d'inclusion et de gestion du handicap
+                    </a>
+                </p>
+                <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">
+                    Bâtiment CFA Bretagne – Formation professionnelle continue
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isActive = header.classList.contains('active');
+                
+                // Close all accordions
+                document.querySelectorAll('.accordion-header').forEach(h => {
+                    h.classList.remove('active');
+                    h.nextElementSibling.classList.remove('active');
+                });
+                
+                // Open clicked accordion if it wasn't active
+                if (!isActive) {
+                    header.classList.add('active');
+                    content.classList.add('active');
+                }
+            });
+        });
+
+        // Open first accordion by default
+        document.querySelector('.accordion-header').click();
+    </script>
+</body>
+</html>
